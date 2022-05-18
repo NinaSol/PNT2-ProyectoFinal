@@ -13,6 +13,17 @@
                   type="text"
                   class="form-control"
                   id="floatingInput"
+                  placeholder="Usuario"
+                  v-model="user"
+                />
+                <label for="floatingInput">Usuario</label>
+                <p class="text-danger">{{ watchErrorUser }}</p>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
                   placeholder="Dirección de correo electrónico"
                   v-model="email"
                 />
@@ -62,6 +73,7 @@ export default {
     return {
       errorMail: [],
       errorPass: [],
+      errorUser: [],
       email: null,
       pass: null,
     };
@@ -71,7 +83,13 @@ export default {
     validarForm(e) {
       this.errorMail = [];
       this.errorPass = [];
+      this.errorUser = [];
 
+      if (!this.user) {
+        if (this.errorUser.length == 0) {
+          this.errorUser.push("Usuario requerido");
+        }
+      }
       if (!this.email) {
         if (this.errorMail.length == 0) {
           this.errorMail.push("Email requerido");
@@ -110,6 +128,10 @@ export default {
 
     watchErrorPass() {
       return this.errorPass.length ? this.errorPass.toString() : "";
+    },
+
+    watchErrorUser() {
+      return this.errorUser.length ? this.errorUser.toString() : "";
     },
   },
 };
