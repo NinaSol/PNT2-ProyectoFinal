@@ -66,8 +66,17 @@
 </template>
 
 <script>
+import { useStore } from "../store/userStore";
+
 export default {
   name: "AppLogin",
+
+  setup() {
+    const store = useStore();
+    const setName = () => store.setUserName();
+    const setEmail = () => store.setUserEmail();
+    return { store, setName, setEmail };
+  },
 
   data() {
     return {
@@ -107,6 +116,9 @@ export default {
 
       if (!this.errorMail.length && !this.errorPass.length) {
         //validado correctamente
+        this.setName(this.user);
+        this.setEmail(this.email);
+        console.log(this.store.userName);
         this.$router.push(`/`);
         return true;
       }
