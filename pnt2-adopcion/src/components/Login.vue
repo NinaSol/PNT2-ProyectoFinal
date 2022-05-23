@@ -73,9 +73,7 @@ export default {
 
   setup() {
     const store = useStore();
-    const setName = () => store.setUserName();
-    const setEmail = () => store.setUserEmail();
-    return { store, setName, setEmail };
+    return { store };
   },
 
   data() {
@@ -83,6 +81,7 @@ export default {
       errorMail: [],
       errorPass: [],
       errorUser: [],
+      user: null,
       email: null,
       pass: null,
     };
@@ -116,9 +115,8 @@ export default {
 
       if (!this.errorMail.length && !this.errorPass.length) {
         //validado correctamente
-        this.setName(this.user);
-        this.setEmail(this.email);
-        console.log(this.store.userName);
+        this.store.setUserName(this.user);
+        this.store.setUserEmail(this.email);
         this.$router.push(`/`);
         return true;
       }
