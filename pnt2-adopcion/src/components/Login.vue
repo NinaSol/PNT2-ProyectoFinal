@@ -17,7 +17,7 @@
                   v-model="user"
                 />
                 <label for="floatingInput">Usuario</label>
-                <p class="text-danger">{{ watchErrorUser }}</p>
+                <p class="text-danger">{{ errorUserStr }}</p>
               </div>
               <div class="form-floating mb-3">
                 <input
@@ -78,9 +78,9 @@ export default {
 
   data() {
     return {
-      errorMail: [],
-      errorPass: [],
-      errorUser: [],
+      errorMail: null,
+      errorPass: null,
+      errorUser: null,
       user: null,
       email: null,
       pass: null,
@@ -89,34 +89,28 @@ export default {
 
   methods: {
     validarForm(e) {
-      this.errorMail = [];
-      this.errorPass = [];
-      this.errorUser = [];
+      !this.user
+        ? (this.errorUser = "Usuario requerido")
+        : (this.errorUser = "");
 
-      if (!this.user) {
-        if (this.errorUser.length == 0) {
-          this.errorUser.push("Usuario requerido");
-        }
-      }
-      if (!this.email) {
-        if (this.errorMail.length == 0) {
-          this.errorMail.push("Email requerido");
-        }
-      } else if (!this.validarEmail(this.email)) {
-        if (this.errorMail.length == 0) {
-          this.errorMail.push("Ingrese una email válido");
-        }
-      }
-      if (!this.pass) {
-        if (this.errorPass.length == 0) {
-          this.errorPass.push("Contraseña requerida");
-        }
-      }
+      !this.email
+        ? (this.errorMail = "Email requerido")
+        : (this.errorMail = "");
 
-      if (!this.errorMail.length && !this.errorPass.length) {
-        //validado correctamente
-        this.store.setUserName(this.user);
-        this.store.setUserEmail(this.email);
+      !this.validarEmail(this.email)
+        ? this.errorMail.push("Ingrese una email válido")
+        : (this.errorMail = "");
+
+      !this.pass
+        ? (this.errorPass = "Contraseña requerida")
+        : (this.errorPass = "");
+
+      if (
+        this.errorMail === "" &&
+        this.errorPass === "" &&
+        this.errorUser === ""
+      ) {
+        this.setStoreValues(this.user, this.email);
         this.$router.push(`/`);
         return true;
       }
@@ -129,19 +123,10 @@ export default {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
-  },
 
-  computed: {
-    watchErrorMail() {
-      return this.errorMail.length ? this.errorMail.toString() : "";
-    },
-
-    watchErrorPass() {
-      return this.errorPass.length ? this.errorPass.toString() : "";
-    },
-
-    watchErrorUser() {
-      return this.errorUser.length ? this.errorUser.toString() : "";
+    setStoreValues(user, email) {
+      this.store.setUserName(user);
+      this.store.setUserEmail(email);
     },
   },
 };
