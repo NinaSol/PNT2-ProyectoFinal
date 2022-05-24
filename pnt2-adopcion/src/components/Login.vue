@@ -115,9 +115,10 @@ export default {
 
       if (!this.errorMail.length && !this.errorPass.length) {
         //validado correctamente
+        localStorage.name = this.user;
         this.store.setUserName(this.user);
         this.store.setUserEmail(this.email);
-        this.$router.push(`/`);
+        this.$router.push({path:'/'});
         return true;
       }
 

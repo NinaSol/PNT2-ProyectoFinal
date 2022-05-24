@@ -5,22 +5,54 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-show="isLoged()">
           <a class="nav-link" href="/login">Mis Mascotas</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-show="isLoged()">
           <a class="nav-link" href="/solicitudes">Solicitudes</a>
         </li>
       </ul>
       
-      <div>
-        <a class="nav-link" href="/solicitudes">Login</a>
+      <div v-show="isLoged()">
+        <a class="nav-link" href="/profile">{{ this.user }}</a>
+      </div>
+      <div v-show="!isLoged()">
+        <a class="nav-link" href="/login">login</a>
       </div>
     </div>
   </nav>
 </template>
 
-<script></script>
+<script>
+export default{
+  name: "NavBar",
+  data(){
+    return{
+      user: '',
+    };
+  },
+  mounted() {
+    if (localStorage.name){
+      this.user = localStorage.name;
+      console.log(this.user);
+      console.log(localStorage.name);
+    }
+  },
+  methods:{
+    isLoged(){
+      return this.user && this.user !== "";
+    }
+  },
+
+  computed:{
+    sarlanga() {
+      return this.user && this.user !== "";
+    }
+  }
+  
+  
+}
+</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
