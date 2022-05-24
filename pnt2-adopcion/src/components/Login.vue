@@ -17,7 +17,7 @@
                   v-model="user"
                 />
                 <label for="floatingInput">Usuario</label>
-                <p class="text-danger">{{ errorUserStr }}</p>
+                <p class="text-danger">{{ errorUser }}</p>
               </div>
               <div class="form-floating mb-3">
                 <input
@@ -30,7 +30,7 @@
                 <label for="floatingInput"
                   >Dirección de correo electrónico</label
                 >
-                <p class="text-danger">{{ watchErrorMail }}</p>
+                <p class="text-danger">{{ errorMail }}</p>
               </div>
               <div class="form-floating mb-3">
                 <input
@@ -41,7 +41,7 @@
                   v-model="pass"
                 />
                 <label for="floatingPassword">Contraseña</label>
-                <p class="text-danger">{{ watchErrorPass }}</p>
+                <p class="text-danger">{{ errorPass }}</p>
               </div>
 
               <div class="d-flex flex-row mb-4">
@@ -98,7 +98,7 @@ export default {
         : (this.errorMail = "");
 
       !this.validarEmail(this.email)
-        ? this.errorMail.push("Ingrese una email válido")
+        ? (this.errorMail = "Ingrese una email válido")
         : (this.errorMail = "");
 
       !this.pass
