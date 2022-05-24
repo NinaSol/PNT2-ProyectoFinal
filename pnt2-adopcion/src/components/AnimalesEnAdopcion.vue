@@ -17,6 +17,7 @@
             :raza="mascota.raza"
             :comentarios="mascota.comentarios"
             :edad="mascota.edad"
+            :imagen="mascota.imagen"
           />
         </div>
       </div>
@@ -47,6 +48,7 @@ export default {
     setEspecie(value) {
       this.especie = value;
     },
+    agregarMascota() {},
   },
   async created() {
     const response = await fetch(this.url);

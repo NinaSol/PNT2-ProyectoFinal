@@ -1,12 +1,7 @@
 <template>
   <div class="card" style="width: 16rem">
     <div style="width: 18rem">
-      <img
-        src="https://www.diarioveterinario.com/images/showid2/3192567?w=900"
-        class="card-img-top"
-        alt=""
-        style="width: 16rem"
-      />
+      <img :src="imagen" class="card-img-top" alt="" style="width: 16rem" />
     </div>
     <div class="card-body">
       <h5 class="card-title">{{ nombre }}, {{ edad }}, {{ raza }}</h5>
@@ -36,6 +31,7 @@ export default {
     raza: String,
     edad: Number,
     comentarios: String,
+    imagen: String,
   },
   methods: {
     navigateToHome() {
