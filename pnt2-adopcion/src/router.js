@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import AppHome from '@/components/AppHome';
+import AnimalesEnAdopcion from '@/components/AnimalesEnAdopcion';
 
 Vue.use(VueRouter);
 
@@ -9,7 +9,7 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        component: AppHome,
+        component: AnimalesEnAdopcion,
     }
 ];
 
