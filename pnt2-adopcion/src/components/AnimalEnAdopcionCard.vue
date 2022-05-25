@@ -9,9 +9,9 @@
       />
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{ nombre }}, {{ edad }}, {{ raza }}</h5>
+      <h5 class="card-title">{{ name }}, {{ age }}, {{ race }}</h5>
       <p class="card-text">
-        {{ comentarios }}
+        {{ comment }}
       </p>
       <button
         href="#"
@@ -35,10 +35,10 @@ export default {
   name: "AnimalEnAdopcionCard",
   props: {
     id: String,
-    nombre: String,
-    raza: String,
-    edad: Number,
-    comentarios: String,
+    name: String,
+    race: String,
+    age: Number,
+    comment: String,
   },
   methods: {
     navigateToHome() {

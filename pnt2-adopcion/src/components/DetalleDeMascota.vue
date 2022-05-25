@@ -12,7 +12,7 @@
                 width="150"
               />
               <div class="mt-3">
-                <h4>{{ mascota.nombre }}</h4>
+                <h4>{{ mascota.name }}</h4>
               </div>
             </div>
           </div>
@@ -25,7 +25,7 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Edad</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{ mascota.edad }}</div>
+              <div class="col-sm-9 text-secondary">{{ mascota.age }}</div>
             </div>
             <hr />
             <div class="row">
@@ -33,7 +33,7 @@
                 <h6 class="mb-0">Castrado</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                {{ mascota.castrado ? "Sí" : "No" }}
+                {{ mascota.isCastrated ? "Sí" : "No" }}
               </div>
             </div>
             <hr />
@@ -41,14 +41,16 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Raza</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{ mascota.raza }}</div>
+              <div class="col-sm-9 text-secondary">{{ mascota.race }}</div>
             </div>
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Vacunas</h6>
+                <h6 class="mb-0">Vacunado</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{ mascota.vacunas }}</div>
+              <div class="col-sm-9 text-secondary">
+                {{ mascota.isVaccinated ? "Sí" : "No" }}
+              </div>
             </div>
             <hr />
             <div class="row">
@@ -56,13 +58,13 @@
                 <h6 class="mb-0">Comentario</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                {{ mascota.comentarios }}
+                {{ mascota.comment }}
               </div>
             </div>
             <hr />
             <div class="row">
               <div class="col-sm-12">
-                <template v-if="mascota.buscaDuenio">
+                <template v-if="mascota.looksForOwner">
                   <router-link class="btn btn-primary" to="/"
                     >Solicitar Adopción</router-link
                   >
