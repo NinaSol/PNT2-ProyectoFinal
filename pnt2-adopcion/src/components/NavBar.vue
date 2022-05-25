@@ -14,6 +14,9 @@
       </ul>
       
       <div v-show="isLoged()">
+        <a class="nav-link" href="/dar-adopcion">Dar en adopcion</a>
+      </div>
+      <div v-show="isLoged()">
         <a class="nav-link" href="/profile">{{ this.user }}</a>
       </div>
       <div v-show="isLoged()">
