@@ -6,7 +6,7 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item" v-show="isLoged()">
-          <a class="nav-link" href="/login">Mis Mascotas</a>
+          <a class="nav-link" href="/mascotas">Mis Mascotas</a>
         </li>
         <li class="nav-item" v-show="isLoged()">
           <a class="nav-link" href="/solicitudes">Solicitudes</a>
@@ -15,6 +15,9 @@
       
       <div v-show="isLoged()">
         <a class="nav-link" href="/profile">{{ this.user }}</a>
+      </div>
+      <div v-show="isLoged()">
+        <a class="nav-link" href="/" v-on:click="logout">log out</a>
       </div>
       <div v-show="!isLoged()">
         <a class="nav-link" href="/login">login</a>
@@ -41,6 +44,9 @@ export default{
   methods:{
     isLoged(){
       return this.user && this.user !== "";
+    },
+    logout(){
+      localStorage.name = ''
     }
   },
 
@@ -62,5 +68,4 @@ export default{
 .mr-auto{
   margin-right: auto;
 }
-
 </style>
