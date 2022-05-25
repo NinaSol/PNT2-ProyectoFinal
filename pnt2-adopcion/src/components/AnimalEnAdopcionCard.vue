@@ -18,7 +18,9 @@
         class="btn btn-details"
         style="color: white; background-color: #49ff00"
       >
-        Quiero ver mas
+        <router-link :to="{ name: 'detalleMascota', params: { id: id } }"
+          >Quiero ver más</router-link
+        >
       </button>
     </div>
   </div>
@@ -32,6 +34,7 @@
 export default {
   name: "AnimalEnAdopcionCard",
   props: {
+    id: String,
     nombre: String,
     raza: String,
     edad: Number,

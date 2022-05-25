@@ -13,6 +13,7 @@
           :key="mascota.id"
         >
           <AnimalEnAdopcionCard
+            :id="mascota.id"
             :nombre="mascota.nombre"
             :raza="mascota.raza"
             :comentarios="mascota.comentarios"
