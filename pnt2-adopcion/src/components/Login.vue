@@ -56,6 +56,9 @@
                   Ingresar
                 </button>
               </div>
+              <div class="d-grid">
+                <a href="/" v-on:click="loginAsGuest">Login as guest</a>
+              </div>
               <hr class="my-4" />
             </form>
           </div>
@@ -130,6 +133,10 @@ export default {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
+
+    loginAsGuest(){
+      localStorage.name = 'Guest'
+    }
   },
 
   computed: {
