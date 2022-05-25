@@ -56,6 +56,9 @@
                   Ingresar
                 </button>
               </div>
+              <div class="d-grid">
+                <a href="/" v-on:click="loginAsGuest">Login as guest</a>
+              </div>
               <hr class="my-4" />
             </form>
           </div>
@@ -112,6 +115,13 @@ export default {
       ) {
         this.setStoreValues(this.user, this.email);
         this.$router.push(`/`);
+      }
+      if (!this.errorMail.length && !this.errorPass.length) {
+        //validado correctamente
+        localStorage.name = this.user;
+        this.store.setUserName(this.user);
+        this.store.setUserEmail(this.email);
+        this.$router.push({ path: "/" });
         return true;
       }
 
@@ -123,7 +133,9 @@ export default {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
-
+    loginAsGuest() {
+      localStorage.name = "Guest";
+    },
     setStoreValues(user, email) {
       this.store.setUserName(user);
       this.store.setUserEmail(email);
