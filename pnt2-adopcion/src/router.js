@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import AnimalesEnAdopcion from '@/components/AnimalesEnAdopcion';
 import RequestsList from '@/components/RequestsList';
 import LoginView from '@/components/LoginView';
+import DetalleDeMascota from '@/components/DetalleDeMascota';
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,12 @@ const routes = [
         path:'/login',
         name: 'login',
         component: LoginView
+    },
+    {
+        path: '/mascota/:id',
+        name: 'detalleMascota',
+        component: DetalleDeMascota,
+        props: true,
     }
 ];
 

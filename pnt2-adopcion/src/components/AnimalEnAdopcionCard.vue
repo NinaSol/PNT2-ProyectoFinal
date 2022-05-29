@@ -9,16 +9,18 @@
       />
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{ nombre }}, {{ edad }}, {{ raza }}</h5>
+      <h5 class="card-title">{{ name }}, {{ age }}, {{ race }}</h5>
       <p class="card-text">
-        {{ comentarios }}
+        {{ comment }}
       </p>
       <button
         href="#"
         class="btn btn-details"
         style="color: white; background-color: #49ff00"
       >
-        Quiero ver mas
+        <router-link :to="{ name: 'detalleMascota', params: { id: id } }"
+          >Quiero ver más</router-link
+        >
       </button>
     </div>
   </div>
@@ -32,10 +34,11 @@
 export default {
   name: "AnimalEnAdopcionCard",
   props: {
-    nombre: String,
-    raza: String,
-    edad: Number,
-    comentarios: String,
+    id: String,
+    name: String,
+    race: String,
+    age: Number,
+    comment: String,
   },
   methods: {
     navigateToHome() {

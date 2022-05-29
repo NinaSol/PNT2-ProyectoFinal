@@ -13,10 +13,11 @@
           :key="mascota.id"
         >
           <AnimalEnAdopcionCard
-            :nombre="mascota.nombre"
-            :raza="mascota.raza"
-            :comentarios="mascota.comentarios"
-            :edad="mascota.edad"
+            :id="mascota.id"
+            :name="mascota.name"
+            :race="mascota.race"
+            :comment="mascota.comment"
+            :age="mascota.age"
           />
         </div>
       </div>
@@ -63,7 +64,7 @@ export default {
         this.mascotasFiltradas = this.mascotas;
       } else {
         this.mascotasFiltradas = this.mascotas.filter((m) =>
-          m.especie.toLowerCase().includes(this.especie.toLowerCase())
+          m.animal.toLowerCase().includes(this.especie.toLowerCase())
         );
       }
     },
