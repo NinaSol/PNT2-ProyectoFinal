@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="nav pt-3 pb-3 container">
+    <ul class="nav pt-3 pb-3 container opciones">
       <!--iterar-->
       <li class="nav-item">
         <a class="nav-link" @click="setEspecie('todos')" href="#">Todos</a>
@@ -25,12 +25,14 @@
         >
           <!--pasar mascota-->
           <AnimalEnAdopcionCard
-            :id="mascota.id"
-            :name="mascota.name"
-            :race="mascota.race"
-            :comment="mascota.comment"
-            :age="mascota.age"
-            :image="mascota.image"
+            :mascota="{
+              id: mascota.id,
+              name: mascota.name,
+              race: mascota.race,
+              comment: mascota.comment,
+              age: mascota.age,
+              image: mascota.image,
+            }"
           />
         </div>
       </div>
@@ -93,5 +95,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+.opciones a {
+  color: black !important;
 }
 </style>

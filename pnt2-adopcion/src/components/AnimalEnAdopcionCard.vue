@@ -1,19 +1,30 @@
 <template>
   <div class="card" style="width: 16rem">
     <div class="pt-1">
-      <img :src="image" class="card-img-top" alt="" style="width: 15rem" />
+      <img
+        :src="mascota.image"
+        class="card-img-top"
+        alt=""
+        style="width: 15rem"
+      />
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{ name }}, {{ age }}, {{ race }}</h5>
+      <h5 class="card-title">
+        {{ mascota.name }}, {{ mascota.age }}, {{ mascota.race }}
+      </h5>
       <p class="card-text">
-        {{ comment }}
+        {{ mascota.comment }}
       </p>
       <button
         href="#"
         class="btn btn-details"
         style="color: white; background-color: #439c1e"
       >
-        <router-link :to="{ name: 'detalleMascota', params: { id: id } }"
+        <router-link
+          :to="{
+            name: 'detalleMascota',
+            params: { id: mascota.id },
+          }"
           >Quiero ver más</router-link
         >
       </button>
@@ -29,12 +40,7 @@
 export default {
   name: "AnimalEnAdopcionCard",
   props: {
-    id: String,
-    name: String,
-    race: String,
-    age: Number,
-    comment: String,
-    image: String,
+    mascota: Object,
   },
   methods: {
     navigateToHome() {
