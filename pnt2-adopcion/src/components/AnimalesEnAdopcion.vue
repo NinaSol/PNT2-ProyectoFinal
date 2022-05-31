@@ -1,6 +1,7 @@
 <template>
   <div>
     <ul class="nav pt-3 pb-3 container">
+      <!--iterar-->
       <li class="nav-item">
         <a class="nav-link" @click="setEspecie('todos')" href="#">Todos</a>
       </li>
@@ -22,6 +23,7 @@
           v-for="mascota in mascotasFiltradas"
           :key="mascota.id"
         >
+          <!--pasar mascota-->
           <AnimalEnAdopcionCard
             :id="mascota.id"
             :name="mascota.name"
@@ -71,6 +73,7 @@ export default {
     mascotas: function () {
       this.mascotasFiltradas = this.mascotas;
     },
+    //computed
     especie: function () {
       if (this.especie === "todos") {
         this.mascotasFiltradas = this.mascotas;

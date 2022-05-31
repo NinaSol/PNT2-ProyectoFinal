@@ -1,12 +1,12 @@
 <template>
-  <div class="container shadow-lg" v-if="mascotaExists">
+  <div class="container detail shadow-lg" v-if="mascotaExists">
     <div class="row gutters-sm">
       <div class="col-md-4 mb-3 mt-3">
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
               <img
-                :src="mascota.imagen"
+                :src="mascota.image"
                 alt="Admin"
                 class="rounded-circle"
                 width="150"
@@ -65,11 +65,14 @@
             <div class="row">
               <div class="col-sm-12">
                 <template v-if="mascota.looksForOwner">
-                  <router-link class="btn btn-primary" to="/"
+                  <router-link
+                    class="btn"
+                    style="background-color: #439c1e; color: #fff"
+                    to="/"
                     >Solicitar Adopción</router-link
                   >
                 </template>
-                <router-link class="btn btn-secondary ms-2" to="/"
+                <router-link class="btn ms-2" style="color: #439c1e" to="/"
                   >Volver</router-link
                 >
               </div>
@@ -105,4 +108,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.detail {
+  margin-top: 6rem;
+}
+</style>

@@ -11,7 +11,7 @@
       <button
         href="#"
         class="btn btn-details"
-        style="color: white; background-color: #49ff00"
+        style="color: white; background-color: #439c1e"
       >
         <router-link :to="{ name: 'detalleMascota', params: { id: id } }"
           >Quiero ver más</router-link

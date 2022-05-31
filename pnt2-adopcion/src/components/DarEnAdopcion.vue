@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container detail shadow-lg p-2">
     <form @submit.prevent="agregarAnimal">
       <h2>Dar en adopcion</h2>
       <div class="row">
@@ -12,7 +12,7 @@
 
         <div class="col-md-4">
           <div class="form-group">
-            <label>Edad</label>
+            <label>Edad en años</label>
             <input type="number" class="form-control" v-model="age" />
           </div>
         </div>
@@ -32,13 +32,6 @@
             <input type="text" class="form-control" v-model="comment" />
           </div>
         </div>
-
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Vacunas</label>
-            <input type="text" class="form-control" v-model="isVaccinated" />
-          </div>
-        </div>
         <div class="col-md-4">
           <div class="form-group">
             <label for="url">Imagen <small>Ingrese url</small></label>
@@ -50,36 +43,65 @@
             />
           </div>
         </div>
+        <div class="col-md-4">
+          <label class="mt-3" for="contact-preference">Esta vacunad@?</label>
+          <div class="row-radio">
+            <div class="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="castrado"
+                  value="si"
+                  checked
+                  v-model="isVaccinated"
+                />Si
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="castrado"
+                  value="no"
+                  checked
+                  v-model="items"
+                />No
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="row mt-3">
         <div class="col-md-4">
           <label for="contact-preference">Esta castrad@?</label>
-          <div class="radio">
-            <label>
-              <input
-                type="radio"
-                name="castrado"
-                value="si"
-                checked
-                v-model="isCastrated"
-              />Si
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input
-                type="radio"
-                name="castrado"
-                value="no"
-                checked
-                v-model="isCastrated"
-              />No
-            </label>
+          <div class="row-radio">
+            <div class="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="castrado"
+                  value="si"
+                  checked
+                  v-model="isCastrated"
+                />Si
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="castrado"
+                  value="no"
+                  checked
+                  v-model="isCastrated"
+                />No
+              </label>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
-          <select v-model="animal">
+          <select v-model="animal" class="select-animal">
             <option disabled value="">Elija una opcion</option>
             <option>Perro</option>
             <option>Gato</option>
@@ -88,7 +110,13 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Dar en adopcion</button>
+      <button
+        type="submit"
+        class="btn m-3"
+        style="background-color: #439c1e; color: #fff"
+      >
+        Dar en adopcion
+      </button>
     </form>
   </div>
 </template>
@@ -103,7 +131,7 @@ export default {
       age: null,
       comment: null,
       isCastrated: null,
-      isVaccinated: false,
+      isVaccinated: null,
       image: null,
       animal: "",
       url: "https://6282faeb92a6a5e4621c22e0.mockapi.io/pnt2/mascota",
@@ -121,7 +149,7 @@ export default {
           name: this.nombre,
           age: parseInt(this.age),
           isCastrated: this.isCastrated === "si" ? true : false,
-          isVaccinated: [this.isVaccinated],
+          isVaccinated: this.isVaccinated === "si" ? true : false,
           comment: this.comment,
           animal: this.animal,
           race: this.race,
@@ -138,17 +166,31 @@ export default {
   async created() {},
   watch: {
     agregarAnimal() {
-      this.$refs["nombre"].value = "";
-      this.$refs["raza"].value = "";
-      this.$refs["edad"].value = "";
-      this.$refs["castrado"].value = "";
-      this.$refs["vacunas"].value = "";
-      this.$refs["comentarios"].value = "";
-      this.$refs["especie"].value = "";
-      this.$refs["imagen"].value = "";
+      this.$refs["name"].value = "";
+      this.$refs["race"].value = "";
+      this.$refs["age"].value = "";
+      this.$refs["isCastrated"].value = "";
+      this.$refs["isVaccinated"].value = "";
+      this.$refs["comment"].value = "";
+      this.$refs["animal"].value = "";
+      this.$refs["image"].value = "";
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+.row-radio {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.radio {
+  padding: 5px;
+}
+.select-animal {
+  border: solid 0.5px rgba(0, 0, 0, 0.185);
+  border-radius: 5px;
+  padding: 3px;
+}
+</style>

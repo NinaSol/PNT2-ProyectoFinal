@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -12,7 +12,7 @@
           <a class="nav-link" href="/solicitudes">Solicitudes</a>
         </li>
       </ul>
-      
+
       <div v-show="isLoged()">
         <a class="nav-link" href="/dar-adopcion">Dar en adopcion</a>
       </div>
@@ -30,45 +30,46 @@
 </template>
 
 <script>
-export default{
+export default {
   name: "NavBar",
-  data(){
-    return{
-      user: '',
+  data() {
+    return {
+      user: "",
     };
   },
   mounted() {
-    if (localStorage.name){
+    if (localStorage.name) {
       this.user = localStorage.name;
       console.log(this.user);
       console.log(localStorage.name);
     }
   },
-  methods:{
-    isLoged(){
+  methods: {
+    isLoged() {
       return this.user && this.user !== "";
     },
-    logout(){
-      localStorage.name = ''
-    }
+    logout() {
+      localStorage.name = "";
+    },
   },
 
-  computed:{
+  computed: {
     sarlanga() {
       return this.user && this.user !== "";
-    }
-  }
-  
-  
-}
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.nav-right{
+.nav-right {
   float: right;
 }
-.mr-auto{
+.mr-auto {
   margin-right: auto;
+}
+.navbar {
+  background-color: #439c1e;
 }
 </style>
