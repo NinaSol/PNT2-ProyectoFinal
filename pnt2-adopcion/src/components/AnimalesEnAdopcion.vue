@@ -66,9 +66,11 @@ export default {
   },
   watch: {
     $route: function () {
-      this.getMascotas(this.$route.params.userId).then(
-        (mascotas) => (this.mascotas = mascotas)
-      );
+      if (this.$route.params.userId) {
+        this.getMascotas(this.$route.params.userId).then(
+          (mascotas) => (this.mascotas = mascotas)
+        );
+      }
     },
 
     mascotas: function () {
