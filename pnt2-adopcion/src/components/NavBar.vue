@@ -6,13 +6,17 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item" v-show="isLoged()">
-          <a class="nav-link" href="/mascotas">Mis Mascotas</a>
+          <router-link
+            class="nav-link"
+            :to="{ name: 'misMascotas', params: { userId: this.userId } }"
+            >Mis mascotas</router-link
+          >
         </li>
         <li class="nav-item" v-show="isLoged()">
           <a class="nav-link" href="/solicitudes">Solicitudes</a>
         </li>
       </ul>
-      
+
       <div v-show="isLoged()">
         <a class="nav-link" href="/dar-adopcion">Dar en adopcion</a>
       </div>
@@ -30,45 +34,45 @@
 </template>
 
 <script>
-export default{
+export default {
   name: "NavBar",
-  data(){
-    return{
-      user: '',
+  data() {
+    return {
+      user: "",
+      userId: null,
     };
   },
   mounted() {
-    if (localStorage.name){
+    if (localStorage.name) {
       this.user = localStorage.name;
+      this.userId = localStorage.id;
       console.log(this.user);
       console.log(localStorage.name);
     }
   },
-  methods:{
-    isLoged(){
+  methods: {
+    isLoged() {
       return this.user && this.user !== "";
     },
-    logout(){
-      localStorage.name = ''
-    }
+    logout() {
+      localStorage.name = "";
+    },
   },
 
-  computed:{
+  computed: {
     sarlanga() {
       return this.user && this.user !== "";
-    }
-  }
-  
-  
-}
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.nav-right{
+.nav-right {
   float: right;
 }
-.mr-auto{
+.mr-auto {
   margin-right: auto;
 }
 </style>
