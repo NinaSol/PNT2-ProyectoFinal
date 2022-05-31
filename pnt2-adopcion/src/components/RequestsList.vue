@@ -38,9 +38,6 @@ export default {
     return {
       especie: null,
       solicitudes: [],
-      solicitudesEnviadas: [],
-      solicitudesRecibidas: [],
-      solicitudesAMostrar: [],
       url: "https://6282faeb92a6a5e4621c22e0.mockapi.io/pnt2/solicitudes",
     };
   },
@@ -58,33 +55,35 @@ export default {
     console.log(results)
     this.solicitudes = results;
   },
-  watch: {
-    solicitudes: function () {
-      this.solicitudesEnviadas = this.solicitudes.filter((solicitud) =>
+  computed:{
+    solicitudesAMostrar(){
+      let enviadas = this.solicitudes.filter((solicitud) =>
             solicitud.requester_id == localStorage.userId
         );
 
-      this.solicitudesEnviadas.forEach(element => {
+      enviadas.forEach(element => {
         element.showCommands=false;
       });
 
-      this.solicitudesRecibidas = this.solicitudes.filter((solicitud) =>
+      let recibidas = this.solicitudes.filter((solicitud) =>
             solicitud.owner_id == localStorage.userId
         );
 
-      this.solicitudesRecibidas.forEach(element => {
+      recibidas.forEach(element => {
         element.showCommands=true;
       });
 
+      let aMostrar = []
       if(this.showSent){
-        this.solicitudesAMostrar.push.apply(this.solicitudesAMostrar,this.solicitudesEnviadas);
+        aMostrar.push.apply(aMostrar, enviadas);
       }
       if(this.showReceived){
-        this.solicitudesAMostrar.push.apply(this.solicitudesAMostrar,this.solicitudesRecibidas);
+        aMostrar.push.apply(aMostrar, recibidas);
       }
-    },
-
-  },
+      console.log({aMostrar});
+      return aMostrar;
+    }
+  }
 };
 </script>
 
