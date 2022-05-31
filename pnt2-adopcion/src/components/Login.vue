@@ -113,19 +113,43 @@ export default {
         this.errorPass === "" &&
         this.errorUser === ""
       ) {
-        this.setStoreValues(this.user, this.email);
-        this.$router.push(`/`);
-      }
-      if (!this.errorMail.length && !this.errorPass.length) {
-        //validado correctamente
-        localStorage.name = this.user;
-        this.store.setUserName(this.user);
-        this.store.setUserEmail(this.email);
-        this.$router.push({ path: "/" });
-        return true;
+        this.getUser(this.user)
+          .then((user) => this.userValidated(user))
+          .catch(() => this.userNotValidated());
       }
 
       e.preventDefault();
+    },
+
+    userValidated(user) {
+      localStorage.name = user.name + " " + user.lastName;
+      localStorage.id = user.id;
+      this.store.setUserName(user.userName);
+      this.store.setUserEmail(user.email);
+      this.$router.push({ path: "/" });
+    },
+
+    userNotValidated() {
+      this.errorUser = "Usuario no encontrado";
+      this.email = "";
+      this.pass = "";
+    },
+
+    async getUser(userName) {
+      let user = null;
+      const response = await fetch(
+        "https://6282faeb92a6a5e4621c22e0.mockapi.io/pnt2/users?userName=" +
+          userName
+      );
+      const results = await response.json();
+
+      if (results != null && results.length == 1) {
+        if (results[0].email == this.email) {
+          user = results[0];
+        }
+      }
+
+      return user;
     },
 
     validarEmail(email) {
@@ -135,10 +159,6 @@ export default {
     },
     loginAsGuest() {
       localStorage.name = "Guest";
-    },
-    setStoreValues(user, email) {
-      this.store.setUserName(user);
-      this.store.setUserEmail(email);
     },
   },
 };

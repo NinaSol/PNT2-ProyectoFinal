@@ -23,6 +23,12 @@ const routes = [
         name: 'detalleMascota',
         component: DetalleDeMascota,
         props: true,
+    },
+    {
+        path: '/mascota?userId=:userId',
+        name: 'misMascotas',
+        component: AnimalesEnAdopcion,
+        props: true,
     }
 ];
 
