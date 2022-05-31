@@ -14,9 +14,15 @@ const routes = [
         name: 'home',
         component: AnimalesEnAdopcion,
     },{
-        path: '/solicitudes',
-        name: 'solicitudes',
+        path: '/solicitudes-enviadas',
+        name: 'solicitudes-enviadas',
         component: RequestsList,
+        props: {showSent: true}
+    },{
+        path: '/solicitudes-recibidas',
+        name: 'solicitudes-recibidas',
+        component: RequestsList,
+        props: {showReceived: true}
     },
     {
         path:'/login',

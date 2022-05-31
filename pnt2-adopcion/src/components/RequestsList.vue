@@ -4,15 +4,17 @@
       <div class="row">
         <div
           class="pb-4 col-lg-3 col-sm-6 col-xs-12"
-          v-for="mascota in mascotasFiltradas"
-          :key="mascota.id"
+          v-for="solicitud in solicitudesAMostrar"
+          :key="solicitud.id"
         >
           <RequestCard
-            :nombre="mascota.nombre"
-            :raza="mascota.raza"
-            :comentarios="mascota.comentarios"
-            :edad="mascota.edad"
-            :image="mascota.image"
+            :petName="solicitud.pet_name"
+            :petId="solicitud.pet_id"
+            :ownerId="solicitud.owner_id"
+            :requesterName="solicitud.requester_name"
+            :requesterId="solicitud.requester_id"
+            :image="solicitud.image"
+            :showCommands="solicitud.showCommands"
           />
         </div>
       </div>
@@ -24,16 +26,22 @@
 import RequestCard from "./RequestCard.vue";
 
 export default {
-  name: "AnimalesEnAdopcion",
+  name: "RequestList",
+  props:{
+    showSent: Boolean,
+    showReceived: Boolean
+  },
   components: {
     RequestCard,
   },
   data() {
     return {
       especie: null,
-      mascotas: [],
-      mascotasFiltradas: [],
-      url: "https://628e8b6ea339dfef87afd02f.mockapi.io/pnt2/requests",
+      solicitudes: [],
+      solicitudesEnviadas: [],
+      solicitudesRecibidas: [],
+      solicitudesAMostrar: [],
+      url: "https://6282faeb92a6a5e4621c22e0.mockapi.io/pnt2/solicitudes",
     };
   },
   methods: {
@@ -48,21 +56,34 @@ export default {
     const response = await fetch(this.url);
     const results = await response.json();
     console.log(results)
-    this.mascotas = results;
+    this.solicitudes = results;
   },
   watch: {
-    mascotas: function () {
-      this.mascotasFiltradas = this.mascotas;
-    },
-    especie: function () {
-      if (this.especie === "todos") {
-        this.mascotasFiltradas = this.mascotas;
-      } else {
-        this.mascotasFiltradas = this.mascotas.filter((m) =>
-          m.especie.toLowerCase().includes(this.especie.toLowerCase())
+    solicitudes: function () {
+      this.solicitudesEnviadas = this.solicitudes.filter((solicitud) =>
+            solicitud.requester_id == localStorage.userId
         );
+
+      this.solicitudesEnviadas.forEach(element => {
+        element.showCommands=false;
+      });
+
+      this.solicitudesRecibidas = this.solicitudes.filter((solicitud) =>
+            solicitud.owner_id == localStorage.userId
+        );
+
+      this.solicitudesRecibidas.forEach(element => {
+        element.showCommands=true;
+      });
+
+      if(this.showSent){
+        this.solicitudesAMostrar.push.apply(this.solicitudesAMostrar,this.solicitudesEnviadas);
+      }
+      if(this.showReceived){
+        this.solicitudesAMostrar.push.apply(this.solicitudesAMostrar,this.solicitudesRecibidas);
       }
     },
+
   },
 };
 </script>
