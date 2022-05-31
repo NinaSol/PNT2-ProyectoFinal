@@ -1,9 +1,19 @@
 <template>
   <div>
-    <button class="btn btn-primary" @click="setEspecie('perro')">perros</button>
-    <button class="btn btn-primary" @click="setEspecie('gato')">gatos</button>
-    <button class="btn btn-primary" @click="setEspecie('otro')">otros</button>
-    <button class="btn btn-primary" @click="setEspecie('todos')">todos</button>
+    <ul class="nav pt-3 pb-3 container">
+      <li class="nav-item">
+        <a class="nav-link" @click="setEspecie('todos')" href="#">Todos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" @click="setEspecie('perro')" href="#">Perros</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" @click="setEspecie('gato')" href="#">Gatos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" @click="setEspecie('otro')" href="#">Otros</a>
+      </li>
+    </ul>
 
     <div class="container">
       <div class="row">
@@ -18,6 +28,7 @@
             :race="mascota.race"
             :comment="mascota.comment"
             :age="mascota.age"
+            :image="mascota.image"
           />
         </div>
       </div>

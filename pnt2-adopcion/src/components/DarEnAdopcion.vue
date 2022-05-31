@@ -6,21 +6,21 @@
         <div class="col-md-4">
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" class="form-control" v-model="nombre" />
+            <input type="text" class="form-control" v-model="name" />
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="form-group">
             <label>Edad</label>
-            <input type="number" class="form-control" v-model="edad" />
+            <input type="number" class="form-control" v-model="age" />
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="form-group">
             <label>Raza</label>
-            <input type="text" class="form-control" v-model="raza" />
+            <input type="text" class="form-control" v-model="race" />
           </div>
         </div>
       </div>
@@ -29,14 +29,14 @@
         <div class="col-md-4">
           <div class="form-group">
             <label>Comentarios</label>
-            <input type="text" class="form-control" v-model="comentarios" />
+            <input type="text" class="form-control" v-model="comment" />
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="form-group">
             <label>Vacunas</label>
-            <input type="text" class="form-control" v-model="vacunas" />
+            <input type="text" class="form-control" v-model="isVaccinated" />
           </div>
         </div>
         <div class="col-md-4">
@@ -46,7 +46,7 @@
               type="url"
               class="form-control"
               placeholder="url"
-              v-model="imagen"
+              v-model="image"
             />
           </div>
         </div>
@@ -62,7 +62,7 @@
                 name="castrado"
                 value="si"
                 checked
-                v-model="castrado"
+                v-model="isCastrated"
               />Si
             </label>
           </div>
@@ -73,13 +73,13 @@
                 name="castrado"
                 value="no"
                 checked
-                v-model="castrado"
+                v-model="isCastrated"
               />No
             </label>
           </div>
         </div>
         <div class="col-md-4">
-          <select v-model="especie">
+          <select v-model="animal">
             <option disabled value="">Elija una opcion</option>
             <option>Perro</option>
             <option>Gato</option>
@@ -98,14 +98,14 @@ export default {
   name: "DarEnAdopcion",
   data() {
     return {
-      nombre: null,
-      raza: null,
-      edad: null,
-      comentarios: null,
-      castrado: null,
-      vacunas: null,
-      imagen: null,
-      especie: "",
+      name: null,
+      race: null,
+      age: null,
+      comment: null,
+      isCastrated: null,
+      isVaccinated: false,
+      image: null,
+      animal: "",
       url: "https://6282faeb92a6a5e4621c22e0.mockapi.io/pnt2/mascota",
     };
   },
@@ -118,16 +118,16 @@ export default {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          nombre: this.nombre,
-          edad: parseInt(this.edad),
-          castrado: this.castrado === "si" ? true : false,
-          vacunas: [this.vacunas],
-          comentarios: this.comentarios,
-          especie: this.especie,
-          raza: this.raza,
-          idDuenio: null,
-          buscaDuenio: true,
-          imagen: this.imagen,
+          name: this.nombre,
+          age: parseInt(this.age),
+          isCastrated: this.isCastrated === "si" ? true : false,
+          isVaccinated: [this.isVaccinated],
+          comment: this.comment,
+          animal: this.animal,
+          race: this.race,
+          userId: null,
+          looksForOwner: true,
+          image: this.image,
         }),
       });
       const data = await response.json();

@@ -1,7 +1,7 @@
 <template>
   <div class="card" style="width: 16rem">
-    <div style="width: 18rem">
-      <img :src="imagen" class="card-img-top" alt="" style="width: 16rem" />
+    <div class="pt-1">
+      <img :src="image" class="card-img-top" alt="" style="width: 15rem" />
     </div>
     <div class="card-body">
       <h5 class="card-title">{{ name }}, {{ age }}, {{ race }}</h5>
@@ -34,6 +34,7 @@ export default {
     race: String,
     age: Number,
     comment: String,
+    image: String,
   },
   methods: {
     navigateToHome() {
@@ -50,5 +51,11 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+.card-img-top {
+  border-radius: 2.5px;
+}
+.card {
+  box-shadow: 0px 0px 21px 3px rgba(0, 0, 0, 0.23);
 }
 </style>
