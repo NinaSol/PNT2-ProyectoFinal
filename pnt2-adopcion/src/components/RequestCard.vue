@@ -8,7 +8,8 @@
     />
     <div class="card-body">
       <h5 class="card-title" style="text-align: left;">Solicitante: {{ requesterName }}</h5>
-      <h5 class="card-title">Mascota Solicitada: {{ petName }}</h5>
+      <h5 class="card-title" style="text-align: left;">Mascota Solicitada: {{ petName }}</h5>
+      <h5 class="card-title" style="text-align: left;">Estado: {{ status }}</h5>
       <button
         href="#"
         class="btn btn-details"
@@ -22,14 +23,14 @@
       <button
         class="btn btn-details"
         style="color: white; background-color: red; margin-right:10px"
-        v-on:click="Reject"
+        v-on:click="onReject(id)"
       >
         Rechazar
       </button>
       <button
         class="btn btn-details"
         style="color: white; background-color: #49ff00; margin-left:10px"
-        v-on:click="Confirm"
+        v-on:click="onConfirm(id)"
       >
         Confirmar
       </button>
@@ -41,6 +42,7 @@
 export default {
   name: "RequestCard",
   props: {
+    id: Number,
     petId: Number,
     petName: String,
     ownerId: Number,
@@ -48,14 +50,9 @@ export default {
     requesterName: String,
     image: String,
     showCommands: Boolean,
-  },
-  methods: {
-    Reject(){
-      console.log("Rejected")
-    },
-    Confirm(){
-      console.log("Confirmed to: " + this.requesterName)
-    }
+    status: String,
+    onReject: Function,
+    onConfirm: Function,
   },
 };
 </script>

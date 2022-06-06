@@ -8,6 +8,7 @@
           :key="solicitud.id"
         >
           <RequestCard
+            :id="solicitud.id"
             :petName="solicitud.pet_name"
             :petId="solicitud.pet_id"
             :ownerId="solicitud.owner_id"
@@ -15,6 +16,9 @@
             :requesterId="solicitud.requester_id"
             :image="solicitud.image"
             :showCommands="solicitud.showCommands"
+            :status="solicitud.status"
+            :onConfirm="onConfirm"
+            :onReject="onReject"
           />
         </div>
       </div>
@@ -48,6 +52,24 @@ export default {
     setEspecie(value) {
       this.especie = value;
     },
+    onConfirm(value){
+      this.solicitudesAMostrar.forEach(sol => {
+        if(sol.id === value){
+          sol.status = "CONFIRMED"
+        }else{
+          sol.status = "REJECTED"
+        }
+        sol.showCommands = false;
+      });
+    },
+    onReject(value){
+      this.solicitudesAMostrar.forEach(sol => {
+        if(sol.id === value){
+          sol.status = "REJECTED"
+        sol.showCommands = false;
+        }
+      });
+    } 
   },
   async created() {
     const response = await fetch(this.url);
