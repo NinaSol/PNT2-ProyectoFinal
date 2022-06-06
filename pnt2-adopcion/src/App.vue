@@ -26,4 +26,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+#app a {
+  text-decoration: none;
+  color: #fff;
+}
 </style>

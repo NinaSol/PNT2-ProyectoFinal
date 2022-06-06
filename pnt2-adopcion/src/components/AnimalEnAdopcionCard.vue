@@ -1,24 +1,30 @@
 <template>
   <div class="card" style="width: 16rem">
-    <div style="width: 18rem">
+    <div class="pt-1">
       <img
-        src="https://www.diarioveterinario.com/images/showid2/3192567?w=900"
+        :src="mascota.image"
         class="card-img-top"
         alt=""
-        style="width: 16rem"
+        style="width: 15rem"
       />
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{ name }}, {{ age }}, {{ race }}</h5>
+      <h5 class="card-title">
+        {{ mascota.name }}, {{ mascota.age }}, {{ mascota.race }}
+      </h5>
       <p class="card-text">
-        {{ comment }}
+        {{ mascota.comment }}
       </p>
       <button
         href="#"
         class="btn btn-details"
-        style="color: white; background-color: #49ff00"
+        style="color: white; background-color: #439c1e"
       >
-        <router-link :to="{ name: 'detalleMascota', params: { id: id } }"
+        <router-link
+          :to="{
+            name: 'detalleMascota',
+            params: { id: mascota.id },
+          }"
           >Quiero ver más</router-link
         >
       </button>
@@ -34,11 +40,7 @@
 export default {
   name: "AnimalEnAdopcionCard",
   props: {
-    id: String,
-    name: String,
-    race: String,
-    age: Number,
-    comment: String,
+    mascota: Object,
   },
   methods: {
     navigateToHome() {
@@ -55,5 +57,11 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+.card-img-top {
+  border-radius: 2.5px;
+}
+.card {
+  box-shadow: 0px 0px 21px 3px rgba(0, 0, 0, 0.23);
 }
 </style>

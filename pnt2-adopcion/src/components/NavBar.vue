@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -13,7 +13,14 @@
           >
         </li>
         <li class="nav-item" v-show="isLoged()">
-          <a class="nav-link" href="/solicitudes">Solicitudes</a>
+          <a class="nav-link" href="/solicitudes-recibidas"
+            >Solicitudes Recibidas</a
+          >
+        </li>
+        <li class="nav-item" v-show="isLoged()">
+          <a class="nav-link" href="/solicitudes-enviadas"
+            >Solicitudes Enviadas</a
+          >
         </li>
       </ul>
 
@@ -74,5 +81,8 @@ export default {
 }
 .mr-auto {
   margin-right: auto;
+}
+.navbar {
+  background-color: #439c1e;
 }
 </style>

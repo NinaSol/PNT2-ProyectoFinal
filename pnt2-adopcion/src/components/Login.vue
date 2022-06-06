@@ -159,6 +159,7 @@ export default {
     },
     loginAsGuest() {
       localStorage.name = "Guest";
+      localStorage.userId = 1;
     },
   },
 };

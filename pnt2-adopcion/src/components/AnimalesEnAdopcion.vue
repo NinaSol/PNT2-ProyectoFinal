@@ -1,9 +1,20 @@
 <template>
   <div>
-    <button class="btn btn-primary" @click="setEspecie('perro')">perros</button>
-    <button class="btn btn-primary" @click="setEspecie('gato')">gatos</button>
-    <button class="btn btn-primary" @click="setEspecie('otro')">otros</button>
-    <button class="btn btn-primary" @click="setEspecie('todos')">todos</button>
+    <ul class="nav pt-3 pb-3 container opciones">
+      <!--iterar-->
+      <li class="nav-item">
+        <a class="nav-link" @click="setEspecie('todos')" href="#">Todos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" @click="setEspecie('perro')" href="#">Perros</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" @click="setEspecie('gato')" href="#">Gatos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" @click="setEspecie('otro')" href="#">Otros</a>
+      </li>
+    </ul>
 
     <div class="container">
       <div class="row">
@@ -12,12 +23,16 @@
           v-for="mascota in mascotasFiltradas"
           :key="mascota.id"
         >
+          <!--pasar mascota-->
           <AnimalEnAdopcionCard
-            :id="mascota.id"
-            :name="mascota.name"
-            :race="mascota.race"
-            :comment="mascota.comment"
-            :age="mascota.age"
+            :mascota="{
+              id: mascota.id,
+              name: mascota.name,
+              race: mascota.race,
+              comment: mascota.comment,
+              age: mascota.age,
+              image: mascota.image,
+            }"
           />
         </div>
       </div>
@@ -76,6 +91,7 @@ export default {
     mascotas: function () {
       this.mascotasFiltradas = this.mascotas;
     },
+    //computed
     especie: function () {
       if (this.especie === "todos") {
         this.mascotasFiltradas = this.mascotas;
@@ -95,5 +111,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+.opciones a {
+  color: black !important;
 }
 </style>
