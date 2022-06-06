@@ -9,7 +9,10 @@
           <a class="nav-link" href="/mascotas">Mis Mascotas</a>
         </li>
         <li class="nav-item" v-show="isLoged()">
-          <a class="nav-link" href="/solicitudes">Solicitudes</a>
+          <a class="nav-link" href="/solicitudes-recibidas">Solicitudes Recibidas</a>
+        </li>
+        <li class="nav-item" v-show="isLoged()">
+          <a class="nav-link" href="/solicitudes-enviadas">Solicitudes Enviadas</a>
         </li>
       </ul>
       
