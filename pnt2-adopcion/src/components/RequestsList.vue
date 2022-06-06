@@ -17,8 +17,8 @@
             :image="solicitud.image"
             :showCommands="solicitud.showCommands"
             :status="solicitud.status"
-            :onConfirm="onConfirm"
-            :onReject="onReject"
+            @onConfirm="onConfirm($event, solicitud.id)"
+            @onReject="onReject($event, solicitud.id)"
           />
         </div>
       </div>
@@ -54,19 +54,16 @@ export default {
     },
     onConfirm(value){
       this.solicitudesAMostrar.forEach(sol => {
-        if(sol.id === value){
-          sol.status = "CONFIRMED"
-        }else{
-          sol.status = "REJECTED"
-        }
+        sol.status = sol.id === value ? "CONFIRMED" : "REJECTED";
         sol.showCommands = false;
       });
     },
     onReject(value){
+      console.log({value});
       this.solicitudesAMostrar.forEach(sol => {
         if(sol.id === value){
           sol.status = "REJECTED"
-        sol.showCommands = false;
+          sol.showCommands = false;
         }
       });
     } 

@@ -23,14 +23,14 @@
       <button
         class="btn btn-details"
         style="color: white; background-color: red; margin-right:10px"
-        v-on:click="onReject(id)"
+        v-on:click="onReject"
       >
         Rechazar
       </button>
       <button
         class="btn btn-details"
         style="color: white; background-color: #49ff00; margin-left:10px"
-        v-on:click="onConfirm(id)"
+        v-on:click="onConfirm"
       >
         Confirmar
       </button>
@@ -51,9 +51,17 @@ export default {
     image: String,
     showCommands: Boolean,
     status: String,
-    onReject: Function,
-    onConfirm: Function,
   },
+  methods: {
+    onConfirm(){
+      console.log("confirm")
+      this.$emit('onConfirm', this.id);
+    },
+    onReject(){
+      console.log("reject")
+      this.$emit('onReject', this.id);
+    },
+  }
 };
 </script>
 
