@@ -43,8 +43,6 @@ export default {
   mounted() {
     if (localStorage.name) {
       this.user = localStorage.name;
-      console.log(this.user);
-      console.log(localStorage.name);
     }
   },
   methods: {

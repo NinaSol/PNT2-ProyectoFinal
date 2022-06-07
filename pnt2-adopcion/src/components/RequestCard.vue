@@ -9,9 +9,9 @@
       />
     </div>
     <div class="card-body">
-      <span class="card-title" style="text-align: left;">Solicitante: {{ requesterName }}</span>
-      <span class="card-title" style="text-align: left;">Mascota Solicitada: {{ petName }}</span>
-      <span class="card-title" style="text-align: left;">Estado: {{ status }}</span>
+      <p class="card-title" style="text-align: left;">Solicitante: {{ requesterName }}</p>
+      <p class="card-title" style="text-align: left;">Mascota Solicitada: {{ petName }}</p>
+      <p class="card-title" style="text-align: left;">Estado: {{ status }}</p>
       <button
         href="#"
         class="btn btn-details"
@@ -56,11 +56,9 @@ export default {
   },
   methods: {
     onConfirm(){
-      console.log("confirm")
-      this.$emit('onConfirm', this.id);
+      this.$emit('onConfirm', this.id, this.petId, this.status);
     },
     onReject(){
-      console.log("reject")
       this.$emit('onReject', this.id);
     },
   }
