@@ -1,7 +1,6 @@
 <template>
   <div>
     <ul class="nav pt-3 pb-3 container opciones">
-      <!--iterar-->
       <li class="nav-item">
         <a class="nav-link" @click="setEspecie('todos')" href="#">Todos</a>
       </li>
@@ -23,7 +22,6 @@
           v-for="mascota in mascotasFiltradas"
           :key="mascota.id"
         >
-          <!--pasar mascota-->
           <AnimalEnAdopcionCard
             :mascota="{
               id: mascota.id,
@@ -50,7 +48,7 @@ export default {
   },
   data() {
     return {
-      especie: null,
+      //especie: null,
       mascotas: [],
       mascotasFiltradas: [],
       url: "https://6282faeb92a6a5e4621c22e0.mockapi.io/pnt2/mascota",
@@ -61,9 +59,15 @@ export default {
       this.$router.push("/home");
     },
     setEspecie(value) {
-      this.especie = value;
+      //this.especie = value;
+      if (value === "todos") {
+        this.mascotasFiltradas = this.mascotas;
+      } else {
+        this.mascotasFiltradas = this.mascotas.filter((m) =>
+          m.animal.toLowerCase().includes(value.toLowerCase())
+        );
+      }
     },
-    agregarMascota() {},
   },
   async created() {
     const response = await fetch(this.url);
@@ -75,8 +79,7 @@ export default {
     mascotas: function () {
       this.mascotasFiltradas = this.mascotas;
     },
-    //computed
-    especie: function () {
+    /*  especie: function () {
       if (this.especie === "todos") {
         this.mascotasFiltradas = this.mascotas;
       } else {
@@ -84,7 +87,7 @@ export default {
           m.animal.toLowerCase().includes(this.especie.toLowerCase())
         );
       }
-    },
+    }, */
   },
 };
 </script>

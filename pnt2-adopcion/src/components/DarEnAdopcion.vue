@@ -6,21 +6,32 @@
         <div class="col-md-4">
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" class="form-control" v-model="name" />
+            <input type="text" class="form-control" v-model="name" required />
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="form-group">
-            <label>Edad en años</label>
-            <input type="number" class="form-control" v-model="age" />
+            <label for="customRange1" class="form-label"
+              >Edad en años: {{ age }}</label
+            >
+            <input
+              type="range"
+              v-model="age"
+              class="form-range"
+              id="customRange1"
+              min="0"
+              max="20"
+              step="0.5"
+              required
+            />
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="form-group">
             <label>Raza</label>
-            <input type="text" class="form-control" v-model="race" />
+            <input type="text" class="form-control" v-model="race" required />
           </div>
         </div>
       </div>
@@ -29,7 +40,12 @@
         <div class="col-md-4">
           <div class="form-group">
             <label>Comentarios</label>
-            <input type="text" class="form-control" v-model="comment" />
+            <input
+              type="text"
+              class="form-control"
+              v-model="comment"
+              required
+            />
           </div>
         </div>
         <div class="col-md-4">
@@ -40,6 +56,7 @@
               class="form-control"
               placeholder="url"
               v-model="image"
+              required
             />
           </div>
         </div>
@@ -54,6 +71,7 @@
                   value="si"
                   checked
                   v-model="isVaccinated"
+                  required
                 />Si
               </label>
             </div>
@@ -64,7 +82,8 @@
                   name="castrado"
                   value="no"
                   checked
-                  v-model="items"
+                  v-model="isVaccinated"
+                  required
                 />No
               </label>
             </div>
@@ -79,6 +98,7 @@
             <div class="radio">
               <label>
                 <input
+                  required
                   type="radio"
                   name="castrado"
                   value="si"
@@ -90,6 +110,7 @@
             <div class="radio">
               <label>
                 <input
+                  required
                   type="radio"
                   name="castrado"
                   value="no"
@@ -101,7 +122,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <select v-model="animal" class="select-animal">
+          <select v-model="animal" class="select-animal" required>
             <option disabled value="">Elija una opcion</option>
             <option>Perro</option>
             <option>Gato</option>
@@ -128,7 +149,7 @@ export default {
     return {
       name: null,
       race: null,
-      age: null,
+      age: 0,
       comment: null,
       isCastrated: null,
       isVaccinated: null,
@@ -147,7 +168,7 @@ export default {
         },
         body: JSON.stringify({
           name: this.nombre,
-          age: parseInt(this.age),
+          age: parseFloat(this.age),
           isCastrated: this.isCastrated === "si" ? true : false,
           isVaccinated: this.isVaccinated === "si" ? true : false,
           comment: this.comment,
