@@ -135,6 +135,7 @@ export default {
     },
     loginAsGuest() {
       localStorage.name = "Guest";
+      localStorage.userId = 1;
     },
     setStoreValues(user, email) {
       this.store.setUserName(user);

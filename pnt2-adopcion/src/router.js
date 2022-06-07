@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import AnimalesEnAdopcion from '@/components/AnimalesEnAdopcion';
 import DarEnAdopcion from '@/components/DarEnAdopcion';
+import RequestsList from '@/components/RequestsList';
 import LoginView from '@/components/LoginView';
 import DetalleDeMascota from '@/components/DetalleDeMascota';
 
@@ -12,6 +13,16 @@ const routes = [
     {
         path: '/',
         component: AnimalesEnAdopcion,
+    },{
+        path: '/solicitudes-enviadas',
+        name: 'solicitudes-enviadas',
+        component: RequestsList,
+        props: {showSent: true}
+    },{
+        path: '/solicitudes-recibidas',
+        name: 'solicitudes-recibidas',
+        component: RequestsList,
+        props: {showReceived: true}
     },
     {
         path:'/login',
