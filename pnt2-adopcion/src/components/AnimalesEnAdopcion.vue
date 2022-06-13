@@ -69,23 +69,32 @@ export default {
       if (typeof userId !== "undefined") {
         newUrl = this.url + "?userId=" + userId;
       }
+
       const response = await fetch(newUrl);
       const results = await response.json();
       return results;
     },
+
+    decideViews() {
+      if (this.$route.query.userId) {
+        this.getMascotas(this.$route.query.userId).then(
+          (mascotas) => (this.mascotas = mascotas)
+        );
+      } else {
+        this.getMascotas().then((mascotas) => (this.mascotas = mascotas));
+      }
+    },
   },
+
   async created() {
-    this.getMascotas().then((mascotas) => (this.mascotas = mascotas));
+    this.decideViews();
 
     //this.mascotasFiltradas = results;
   },
+
   watch: {
     $route: function () {
-      if (this.$route.params.userId) {
-        this.getMascotas(this.$route.params.userId).then(
-          (mascotas) => (this.mascotas = mascotas)
-        );
-      }
+      this.decideViews();
     },
 
     mascotas: function () {
