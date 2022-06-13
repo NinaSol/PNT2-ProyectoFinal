@@ -6,6 +6,7 @@ import DarEnAdopcion from '@/components/DarEnAdopcion';
 import RequestsList from '@/components/RequestsList';
 import LoginView from '@/components/LoginView';
 import DetalleDeMascota from '@/components/DetalleDeMascota';
+import ReporteAnual from '@/components/ReporteAnual';
 
 Vue.use(VueRouter);
 
@@ -44,6 +45,10 @@ const routes = [
     {
         path: '/dar-adopcion',
         component: DarEnAdopcion,
+    },
+    {
+        path: '/reporte',
+        component: ReporteAnual,
     }
 ];
 
