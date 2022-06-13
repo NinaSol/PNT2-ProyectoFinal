@@ -63,15 +63,40 @@ export default {
     setEspecie(value) {
       this.especie = value;
     },
-    agregarMascota() {},
+    async getMascotas(userId) {
+      let newUrl = this.url;
+
+      if (typeof userId !== "undefined") {
+        newUrl = this.url + "?userId=" + userId;
+      }
+
+      const response = await fetch(newUrl);
+      const results = await response.json();
+      return results;
+    },
+
+    decideViews() {
+      if (this.$route.query.userId) {
+        this.getMascotas(this.$route.query.userId).then(
+          (mascotas) => (this.mascotas = mascotas)
+        );
+      } else {
+        this.getMascotas().then((mascotas) => (this.mascotas = mascotas));
+      }
+    },
   },
+
   async created() {
-    const response = await fetch(this.url);
-    const results = await response.json();
-    this.mascotas = results;
+    this.decideViews();
+
     //this.mascotasFiltradas = results;
   },
+
   watch: {
+    $route: function () {
+      this.decideViews();
+    },
+
     mascotas: function () {
       this.mascotasFiltradas = this.mascotas;
     },
