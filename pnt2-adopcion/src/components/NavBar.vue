@@ -3,23 +3,24 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home</a>
+          <router-link class="nav-link" to="/">Home</router-link>
+          <!-- <a class="nav-link" href="/">Home</a> -->
         </li>
         <li class="nav-item" v-show="isLoged()">
           <router-link
             class="nav-link"
-            :to="{ name: 'misMascotas', params: { userId: this.userId } }"
+            :to="{ name: 'misMascotas', query: { userId: this.userId } }"
             >Mis mascotas</router-link
           >
         </li>
         <li class="nav-item" v-show="isLoged()">
-          <a class="nav-link" href="/solicitudes-recibidas"
-            >Solicitudes Recibidas</a
+          <router-link class="nav-link" to="/solicitudes-recibidas"
+            >Solicitudes Recibidas</router-link
           >
         </li>
         <li class="nav-item" v-show="isLoged()">
-          <a class="nav-link" href="/solicitudes-enviadas"
-            >Solicitudes Enviadas</a
+          <router-link class="nav-link" to="/solicitudes-enviadas"
+            >Solicitudes Enviadas</router-link
           >
         </li>
       </ul>
@@ -53,8 +54,6 @@ export default {
     if (localStorage.name) {
       this.user = localStorage.name;
       this.userId = localStorage.id;
-      console.log(this.user);
-      console.log(localStorage.name);
     }
   },
   methods: {
