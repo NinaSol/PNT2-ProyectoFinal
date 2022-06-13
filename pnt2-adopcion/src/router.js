@@ -36,7 +36,7 @@ const routes = [
         props: true,
     },
     {
-        path: '/mascota?userId=:userId',
+        path: '/mascota',
         name: 'misMascotas',
         component: AnimalesEnAdopcion,
         props: true,
