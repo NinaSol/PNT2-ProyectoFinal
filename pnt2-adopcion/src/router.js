@@ -7,6 +7,7 @@ import RequestsList from '@/components/RequestsList';
 import LoginView from '@/components/LoginView';
 import DetalleDeMascota from '@/components/DetalleDeMascota';
 import ReporteAnual from '@/components/ReporteAnual';
+import ProfileView from '@/components/ProfileView';
 
 Vue.use(VueRouter);
 
@@ -49,6 +50,10 @@ const routes = [
     {
         path: '/reporte',
         component: ReporteAnual,
+    },
+    {
+        path: '/profile',
+        component: ProfileView
     }
 ];
 
