@@ -17,8 +17,8 @@
             :image="solicitud.image"
             :showCommands="solicitud.showCommands"
             :status="solicitud.status"
-            :onConfirm="onConfirm"
-            :onReject="onReject"
+            @onConfirm="onConfirm($event, solicitud.id, solicitud.pet_id)"
+            @onReject="onReject($event, solicitud.id)"
           />
         </div>
       </div>
@@ -52,21 +52,24 @@ export default {
     setEspecie(value) {
       this.especie = value;
     },
-    onConfirm(value){
+    onConfirm(event, id, petId){
       this.solicitudesAMostrar.forEach(sol => {
-        if(sol.id === value){
-          sol.status = "CONFIRMED"
+        if(sol.id === id){
+          sol.status = "CONFIRMED";
+          sol.showCommands = false;
         }else{
-          sol.status = "REJECTED"
+          if(sol.pet_id === petId){
+            sol.status = "REJECTED";
+            sol.showCommands = false;
+          }
         }
-        sol.showCommands = false;
       });
     },
-    onReject(value){
+    onReject(event, id){
       this.solicitudesAMostrar.forEach(sol => {
-        if(sol.id === value){
+        if(sol.id === id){
           sol.status = "REJECTED"
-        sol.showCommands = false;
+          sol.showCommands = false;
         }
       });
     } 
@@ -74,7 +77,6 @@ export default {
   async created() {
     const response = await fetch(this.url);
     const results = await response.json();
-    console.log(results)
     this.solicitudes = results;
   },
   computed:{
@@ -102,7 +104,6 @@ export default {
       if(this.showReceived){
         aMostrar.push.apply(aMostrar, recibidas);
       }
-      console.log({aMostrar});
       return aMostrar;
     }
   }

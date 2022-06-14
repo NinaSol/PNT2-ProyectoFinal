@@ -36,6 +36,12 @@ const routes = [
         props: true,
     },
     {
+        path: '/mascota',
+        name: 'misMascotas',
+        component: AnimalesEnAdopcion,
+        props: true,
+    },
+    {
         path: '/dar-adopcion',
         component: DarEnAdopcion,
     }
