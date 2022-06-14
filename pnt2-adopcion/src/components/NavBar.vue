@@ -28,6 +28,9 @@
             >Dar en adopción</router-link
           >
         </li>
+        <li class="nav-item" v-show="isLoged()">
+          <router-link class="nav-link" to="/pets-data">Data</router-link>
+        </li>
       </ul>
 
       <div v-show="isLoged()">
