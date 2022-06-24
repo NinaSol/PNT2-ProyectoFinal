@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ProfileDetails
-      class="mt-3"
+      class="mt-4"
       v-if="user"
       :user="{
         id: user.id,
@@ -13,15 +13,34 @@
         email: user.email,
       }"
     />
+    <hr />
+    <div class="row">
+      <h3>Tu actividad:</h3>
+      <div class="col">
+        <PetsPie
+          v-if="user"
+          :user="{
+            id: user.id,
+          }"
+        />
+      </div>
+      <div class="col">
+        <LineChart v-if="user" title="Solicitudes de Adopción:" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import ProfileDetails from "@/components/ProfileDetails.vue";
+import PetsPie from "@/components/PetsPie.vue";
+import LineChart from "@/components/LineChart.vue";
 
 export default {
   components: {
     ProfileDetails,
+    PetsPie,
+    LineChart,
   },
   data() {
     return {
