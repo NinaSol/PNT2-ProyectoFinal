@@ -1,22 +1,18 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <ProfileDetails
-          v-if="user"
-          :user="{
-            id: user.id,
-            name: user.name,
-            lastName: user.lastName,
-            userName: user.userName,
-            address: user.address,
-            phoneNumber: user.phoneNumber,
-            email: user.email,
-          }"
-        />
-      </div>
-      <div class="col"></div>
-    </div>
+    <ProfileDetails
+      class="mt-3"
+      v-if="user"
+      :user="{
+        id: user.id,
+        name: user.name,
+        lastName: user.lastName,
+        userName: user.userName,
+        address: user.address,
+        phoneNumber: user.phoneNumber,
+        email: user.email,
+      }"
+    />
   </div>
 </template>
 
@@ -39,7 +35,6 @@ export default {
     );
     const response = await request.json();
     this.user = response[0];
-    console.log(this.user);
   },
 };
 </script>
