@@ -1,8 +1,7 @@
-<template>
+<template v-if="user">
   <div class="container">
     <ProfileDetails
       class="mt-4"
-      v-if="user"
       :user="{
         id: user.id,
         name: user.name,
@@ -18,7 +17,6 @@
       <h3>Tu actividad:</h3>
       <div class="col">
         <PetsPie
-          v-if="user"
           :user="{
             id: user.id,
           }"
@@ -26,7 +24,7 @@
       </div>
       <div class="vr"></div>
       <div class="col">
-        <LineChart v-if="user" title="Solicitudes de Adopción:" />
+        <LineChart title="Solicitudes de Adopción:" />
       </div>
     </div>
   </div>
