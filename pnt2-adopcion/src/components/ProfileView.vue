@@ -24,6 +24,7 @@
           }"
         />
       </div>
+      <div class="vr"></div>
       <div class="col">
         <LineChart v-if="user" title="Solicitudes de Adopción:" />
       </div>
