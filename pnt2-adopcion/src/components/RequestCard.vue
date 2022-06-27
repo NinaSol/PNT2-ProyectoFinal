@@ -12,13 +12,14 @@
       <p class="card-title" style="text-align: left;">Solicitante: {{ requesterName }}</p>
       <p class="card-title" style="text-align: left;">Mascota Solicitada: {{ petName }}</p>
       <p class="card-title" style="text-align: left;">Estado: {{ status }}</p>
-      <button
+      <!--<button
         href="#"
         class="btn btn-details"
         style="color: white; background-color: #439c1e"
       >
         Detalle
       </button>
+      -->
     </div>
 
     <div class="column" style="margin-bo" v-show="showCommands">
